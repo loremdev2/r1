@@ -25,7 +25,8 @@
     - Build small apps (e.g., a todo list) using vanilla JS.
         
 
-**Resources**:
+**Resources**
+
 
 - [You Don’t Know JS (book series)](https://github.com/getify/You-Dont-Know-JS)
     
