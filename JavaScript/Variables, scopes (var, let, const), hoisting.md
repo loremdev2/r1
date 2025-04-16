@@ -166,3 +166,11 @@ for (var i = 0; i < 3; i++) {
 - Avoid `var` due to its quirks (function scoping, hoisting).
     
 - Always initialize variables before use to avoid unexpected behavior.
+
+
+
+
+
+
+
+![[Pasted image 20250416220941.png]]
