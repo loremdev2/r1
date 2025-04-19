@@ -1,3 +1,6 @@
+> [!NOTE]
+> Function along with its lexical scope bundled together is called a Closure.
+
 Closures in JavaScript are functions that retain access to variables from their outer (enclosing) lexical scope even after the outer function has finished executing. This occurs because the inner function "closes over" the variables it references, preserving their environment. Here's a breakdown with examples:
 
 ### Key Concepts:
@@ -10,7 +13,17 @@ Closures in JavaScript are functions that retain access to variables from their 
     
 
 ---
+### Uses of Closures:
 
+1. Modular Design Pattern
+2. Currying
+3. Functions like once
+4. Memoize
+5. Maintaining state in async world
+6. setTimeouts
+7. Iterators
+8. and many more
+    
 ### Example 1: Basic Closure
 
 
@@ -68,7 +81,7 @@ for (var i = 0; i < 3; i++) {
 - **Why**: All `setTimeout` callbacks share the same `i` (var is function-scoped).
     
 
-**Fix with Closure**:
+**Fix with Closure**: 
 
 
 
@@ -128,3 +141,7 @@ console.log(person.getName(), person.getAge()); // Output: "Alice", 30
 - **How It Works**:
     
     - The inner function retains a reference to its outer scope’s variables, preventing garbage collection.
+
+
+
+
