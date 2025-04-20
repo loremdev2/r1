@@ -28,7 +28,7 @@ Closures in JavaScript are functions that retain access to variables from their 
 
 
 
-```
+```js
 function createGreeting(greeting) {
   return function(name) {
     console.log(`${greeting}, ${name}`);
@@ -48,7 +48,7 @@ sayHello("Alice"); // Output: "Hello, Alice"
 
 
 
-```
+```js
 function createCounter() {
   let count = 0;
   return {
@@ -72,7 +72,7 @@ console.log(counter.getCount()); // Output: 1
 **Issue without Closure**:
 
 
-```
+```js
 for (var i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 100); // Output: 3, 3, 3
 }
@@ -85,7 +85,7 @@ for (var i = 0; i < 3; i++) {
 
 
 
-```
+```js
 for (var i = 0; i < 3; i++) {
   (function(j) {
     setTimeout(() => console.log(j), 100); // Output: 0, 1, 2
@@ -101,7 +101,7 @@ for (var i = 0; i < 3; i++) {
 ### Example 4: Data Privacy
 
 
-```
+```js
 
 function createPerson(name) {
   let age = 0;

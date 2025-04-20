@@ -6,7 +6,7 @@ JavaScript treats functions as "first-class citizens," meaning they can be passe
 
 #### Example: Synchronous Callback
 
-```
+```js
 // Define a function that accepts a callback
 function greet(name, callback) {
   console.log(`Hello, ${name}!`);
@@ -41,7 +41,7 @@ Callbacks shine in asynchronous code, where operations take time (e.g., timers, 
 #### Example: `setTimeout`
 
 
-```
+```js
 // Asynchronous callback (executes after 2 seconds)
 setTimeout(function() {
   console.log("This runs later!");
@@ -64,7 +64,7 @@ The callback inside `setTimeout` runs asynchronously, allowing other code to r
 Callbacks are used to handle events like clicks, key presses, etc.
 #### Example: Button Click
 
-```
+```js
 document.querySelector("#myButton").addEventListener("click", function() {
   console.log("Button clicked!");
 });
@@ -80,7 +80,7 @@ The callback runs every time the button is clicked.
 Many array methods use callbacks to process elements.
 
 #### Example: `array.map()`
-```
+```js
 
 const numbers = [1, 2, 3];
 const doubled = numbers.map(function(num) {
@@ -99,7 +99,7 @@ The callback transforms each array element.
 In Node.js, callbacks often follow an "error-first" convention: the first argument is for errors, and the rest are for results.
 #### Example: Reading a File
 
-```
+```js
 const fs = require('fs');
 
 fs.readFile('file.txt', 'utf8', (err, data) => {
@@ -119,7 +119,7 @@ If the file read fails, `err` contains the error; otherwise, `data` holds th
 
 Nesting many callbacks can lead to messy, hard-to-read code:
 
-```
+```js
 getData(function(a) {
   getMoreData(a, function(b) {
     getEvenMoreData(b, function(c) {

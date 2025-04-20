@@ -31,7 +31,7 @@ If it doesn’t find it anywhere, you get a `ReferenceError`.
 
 ### Example 1: Basic Scope Chain
 
-```
+```js
 var a = "global";
 
 function outer() {
@@ -63,7 +63,7 @@ outer();
 ### ⚠️ Example 2: Variable Not Found in Scope Chain
 
 
-```
+```js
 function test() {
   console.log(x); // ReferenceError: x is not defined
 }
@@ -80,7 +80,7 @@ There is no `x` defined inside `test()` or outside in the global scope, so the s
 
 
 
-```
+```js
 let x = 10;
 
 function example() {
@@ -112,7 +112,7 @@ example();
 Think of it like a chain of boxes:
 
 
-```
+```js
 Global Scope    
 ↓ 
 outer() Scope    

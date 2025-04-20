@@ -24,14 +24,14 @@ Most modern engines (like V8 in Chrome/Node.js) use the **mark-and-sweep algori
 
 #### 1. **Object Becomes Unreachable**
 
-```
+```js
 let user = { name: "Alice" }; 
 user = null; // The original { name: "Alice" } is now unreachable and will be GC'd.
 ```
 
 #### 2. **Circular References**
 
-```
+```js
 function createCycle() {
   let obj1 = {};
   let obj2 = {};
@@ -45,7 +45,7 @@ createCycle();
 
 #### 3. **Closures and Memory**
 
-```
+```js
 function outer() {
   const largeData = new Array(1000000).fill("data"); // Large memory allocation
   return function inner() {
@@ -65,14 +65,14 @@ Even with GC, memory leaks can occur if you unintentionally keep references to o
 
 1. **Forgotten Timers/Intervals**:
     
-```
+```js
     const intervalId = setInterval(() => {}, 1000);
     // Leak if not cleared with clearInterval(intervalId).
 ```
     
 2. **Detached DOM Elements**:
     
-```
+```js
     let button = document.createElement("button");
     document.body.appendChild(button);
     document.body.removeChild(button); 
@@ -81,7 +81,7 @@ Even with GC, memory leaks can occur if you unintentionally keep references to o
     
 3. **Event Listeners**:
 
-```
+```js
     button.addEventListener("click", onClick);
     // Forgot to remove with removeEventListener? Leak if the button is removed.
 ```
@@ -100,7 +100,7 @@ Even with GC, memory leaks can occur if you unintentionally keep references to o
 4. **Use Weak References** (Advanced):
     
     
-```
+```js
     // WeakMap/WeakSet allow keys to be garbage-collected.
     const weakMap = new WeakMap();
     weakMap.set({ key: "obj" }, "value"); // Key is GC'd if no other references.

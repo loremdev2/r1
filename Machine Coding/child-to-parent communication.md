@@ -19,7 +19,7 @@
 
 ### `Parent.js`
 
-```
+```js
 import React, { useState } from 'react';
 import Child from './Child';
 
@@ -46,7 +46,7 @@ export default Parent;
 ### `Child.js`
 
 
-```
+```js
 import React from 'react';
 
 const Child = ({ onInputChange }) => {
@@ -71,7 +71,7 @@ export default Child;
 
 ## Example-2
 
-```
+```js
 import React, { useState } from 'react';
 import Child from './Child';
 const Parent = () => {
@@ -91,7 +91,7 @@ export default Parent;
 ```
 
 
-```
+```js
 import React, { useState } from 'react';
 const Child = ({onSubmit}) => {
     const [value, setValue] = useState("");

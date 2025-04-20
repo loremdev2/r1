@@ -10,7 +10,7 @@ To create a variable, you need to **declare** it using one of these keywords:
     
 - `const` (modern way, block-scoped, and immutable)
 
-```
+```js
 var name = "Alice"; // Avoid using "var" in modern code
 let age = 25;       // Use "let" for values that change
 const PI = 3.14;    // Use "const" for values that won’t change
@@ -35,7 +35,7 @@ const PI = 3.14;    // Use "const" for values that won’t change
 
 Variables declared with `var` are accessible anywhere within the function they’re declared in.
 
-```
+```js
 function example() {
   var x = 10;
   if (true) {
@@ -49,7 +49,7 @@ function example() {
 
 Variables declared with `let` or `const` are only accessible within the block (`{}`) they’re declared in.
 
-```
+```js
 if (true) {
   let y = 10;
   const z = 20;
@@ -64,7 +64,7 @@ console.log(z); // Error: z is not defined
 - `let` allows reassignment:
     
 
-```
+```js
     let count = 1;
     count = 2; // Works
 ```
@@ -72,7 +72,7 @@ console.log(z); // Error: z is not defined
 - `const` does **not** allow reassignment:
 
 
-```
+```js
     const PI = 3.14;
     PI = 3.14159; // Error: Assignment to constant variable
 ```
@@ -85,14 +85,14 @@ console.log(z); // Error: z is not defined
 
 Variables declared with `var` are **hoisted** to the top of their scope and initialized with `undefined`:
 
-```
+```js
 console.log(a); // Output: undefined (not an error)
 var a = 5;
 ```
 
 Variables declared with `let`/`const` are hoisted but remain in the **Temporal Dead Zone (TDZ)** until declared:
 
-```
+```js
 console.log(b); // Error: Cannot access 'b' before initialization
 let b = 10;
 ```
@@ -123,7 +123,7 @@ let b = 10;
 
 ### **Examples**
 
-```
+```js
 // Using const for fixed values
 const API_KEY = "abc123";
 
@@ -141,7 +141,7 @@ console.log(message); // Error: message is not defined
 
 ### **Common Mistakes**
 
-```
+```js
 
 // 1. Re-declaring a variable with "let"
 let x = 1;
