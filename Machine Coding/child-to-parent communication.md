@@ -1,5 +1,5 @@
 
-
+## Example-1
 ### How Child-to-Parent Data Flow Works in React (Step-by-Step)
 
 - **Parent component creates state** using `useState` to hold the message (`msg`).
@@ -66,4 +66,58 @@ const Child = ({ onInputChange }) => {
 export default Child;
 
 ```
+
+
+
+## Example-2
+
+```
+import React, { useState } from 'react';
+import Child from './Child';
+const Parent = () => {
+  const [msg, setMsg] = useState("");
+  const onSubmitClick =(value)=>{
+    setMsg(value);
+  }
+  return (
+    <div>
+      <h3>Parent Component</h3>
+      <p>Data from child : {msg} </p>
+      <Child onSubmit={onSubmitClick} />
+    </div>
+  )
+}
+export default Parent;
+```
+
+
+```
+import React, { useState } from 'react';
+const Child = ({onSubmit}) => {
+    const [value, setValue] = useState("");
+    return (
+        <div>
+            <h5>Child Component</h5>
+            <input
+                type="text"
+                placeholder="Enter a message"
+                value={value}
+                onChange={(e)=>{
+                    setValue(e.target.value)
+                }}
+            />
+            <button
+                type='button'
+                onClick={()=>{
+                    onSubmit(value)
+                }}
+            >
+                Submit
+            </button>
+        </div>
+    )
+}
+export default Child;
+```
+
 
