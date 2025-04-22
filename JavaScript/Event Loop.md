@@ -1,4 +1,7 @@
+
+[Youtube](https://www.youtube.com/watch?v=8zKuNo4ay8E&t=837s)
 ## 1. The Big Picture
+
 
 1. **Call Stack**
     
@@ -121,6 +124,91 @@ console.log('E');
 `A E C D B`
 
 ---
+
+
+## Browser Rendering Pipeline & Event Loop Phases
+
+Browsers generally interleave JavaScript execution with rendering work in these macro‑phases:
+
+1. **Event Handling Phase**
+    
+    - Pull the next task (e.g. a DOM event like a click) and run its JS handler.
+        
+2. **Microtasks Phase**
+    
+    - After the task, drain all pending microtasks (Promise callbacks, `queueMicrotask`, etc.).
+        
+3. **Rendering Phase**
+    
+    - If layout or paint is “dirty,” recalculate styles, layout (reflow), paint pixels, composite layers to the screen.
+        
+    - Note: this only happens if the page is visible and something changed.
+        
+
+Then the loop repeats.
+
+---
+
+##  Where DOM APIs Fit
+
+- **User‑interaction events** (click, keypress, scroll) are delivered into the **macrotask queue** (sometimes called the “task queue”).
+    
+- **`requestAnimationFrame` callbacks** go into a separate frame‑callback queue that’s executed just before the rendering phase.
+    
+- **CSS `transitionend` / `animationend`** events are dispatched as tasks after rendering completes.
+    
+
+---
+
+##  Example: Click Handler + Promises + rAF + setTimeout
+
+
+```HTML
+`<button id="btn">Click me</button>`
+```
+
+
+```JS
+const btn = document.getElementById('btn');
+
+btn.addEventListener('click', () => {
+  console.log('→ handler start');
+
+  Promise.resolve()
+    .then(() => console.log('   • promise in click'));
+
+  requestAnimationFrame(() => {
+    console.log('   • rAF callback');
+  });
+
+  setTimeout(() => {
+    console.log('   • timeout callback');
+  }, 0);
+
+  console.log('← handler end');
+});
+
+```
+
+
+**What happens when you click?**
+
+1. **Event task**: the click handler runs (“→ handler start”, then “← handler end”).
+    
+2. **Microtasks**: the Promise callback runs (“• promise in click”).
+    
+3. **Frame callbacks** (before paint): the rAF runs (“• rAF callback”), then the browser paints any visual changes.
+    
+4. **Next task loop**: the `setTimeout` callback runs (“• timeout callback”).
+    
+
+**Console ordering on click:**
+
+→ handler start   
+← handler end      
+• promise in click      
+• rAF callback      
+• timeout callback
 
 ## 5. Common Interview Questions
 
