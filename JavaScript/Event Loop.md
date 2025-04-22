@@ -1,4 +1,7 @@
 
+> [!NOTE] 
+> Whenever you run any javascript code, global execution context is created and pushed in call stack
+
 [Youtube](https://www.youtube.com/watch?v=8zKuNo4ay8E&t=837s)
 ## 1. The Big Picture
 
@@ -242,3 +245,5 @@ btn.addEventListener('click', () => {
 - **Microtasks** get priority over **macrotasks**.
     
 - Understanding these details helps you write non‑blocking, performant code—and nails those tricky interview questions!
+
+

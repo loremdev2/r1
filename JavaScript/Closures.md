@@ -1,5 +1,5 @@
 > [!NOTE]
-> Function along with its lexical scope bundled together is called a Closure.
+> ==Function along with its lexical scope bundled together is called a Closure.==
 
 Closures in JavaScript are functions that retain access to variables from their outer (enclosing) lexical scope even after the outer function has finished executing. This occurs because the inner function "closes over" the variables it references, preserving their environment. Here's a breakdown with examples:
 
