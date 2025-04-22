@@ -213,6 +213,63 @@ btn.addEventListener('click', () => {
 • rAF callback      
 • timeout callback
 
+
+### Starvation
+A function (or callback) is **starved** when the event loop never gets to run it because some other code—either in the call stack or in the higher‑priority microtask queue—is perpetually busy. Keeping your long tasks chunked and respecting the macrotask vs. microtask priorities ensures a responsive app.
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Loop Starvation Demo</title>
+</head>
+<body>
+  <script>
+    console.log("start");
+
+    // 1) CPU (call‑stack) starvation:
+    function blockFor(seconds) {
+      const end = Date.now() + seconds * 1000;
+      while (Date.now() < end) {
+        // busy‑wait: nothing else can run during this loop
+      }
+    }
+
+    // Schedule a macrotask
+    setTimeout(() => {
+      console.log("— Timeout callback (macrotask) —");
+    }, 0);
+
+    // Block the event loop for 2 seconds
+    blockFor(2);
+    console.log("… after 2s CPU block");
+
+    // 2) Microtask starvation (commented out by default)
+    function starveMacrotasks() {
+      Promise.resolve().then(() => {
+        console.log("→ microtask iteration");
+        // schedule another microtask immediately
+        starveMacrotasks();
+      });
+    }
+
+    // ⚠️ WARNING: if you uncomment the next line you'll never see any macrotasks!
+    // starveMacrotasks();
+
+    // Promise microtask
+    Promise.resolve().then(() => {
+      console.log("— Promise callback (microtask) —");
+    });
+
+    console.log("end");
+  </script>
+</body>
+</html>
+
+```
+
 ## 5. Common Interview Questions
 
 1. **What’s the difference between the call stack, web/API threads, callback queues, and the event loop?**
