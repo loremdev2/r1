@@ -3,6 +3,10 @@
 > Whenever you run any javascript code, global execution context is created and pushed in call stack
 
 [Youtube](https://www.youtube.com/watch?v=8zKuNo4ay8E&t=837s)
+
+[What the heck is the event loop anyway? | Philip Roberts | JSConf EU ](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+[Event Loop Visualizer](https://www.jsv9000.app/)
 ## 1. The Big Picture
 
 
