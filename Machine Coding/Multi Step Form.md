@@ -1,68 +1,34 @@
 
 ```js
-import React, {useState }from 'react';
+import React, { useState } from 'react';
 
 import './index.css';
 
+  
+
 const MultiStepForm = () => {
 
-    const data=[{
+    const data = [
 
-        id: "name",
+        { id: "name", label: "Name", inputType: "text", placeholder: "Enter your name", buttonName: "Next" },
 
-        label: "Name",
+        { id: "email", label: "Email", inputType: "email", placeholder: "Enter your email", buttonName: "Next" },
 
-        inputType: "text",
+        { id: "dob", label: "Date of Birth", inputType: "date", placeholder: "Enter your date of birth", buttonName: "Next" },
 
-        placeholder: "Enter your name",
+        { id: "password", label: "Password", inputType: "password", placeholder: "Enter your password", buttonName: "Submit" }
 
-        buttonName: "Next",
-
-    },{
-
-        id: "email",
-
-        label: "Email",
-
-        inputType: "email",
-
-        placeholder: "Enter your email",
-
-        buttonName: "Next",
-
-    },{
-
-        id: "dob",
-
-        label: "Date of Birth",
-
-        inputType: "date",
-
-        placeholder: "Enter your date of birth",
-
-        buttonName: "Next",
-
-    },{
-
-        id: "password",
-
-        label: "Password",
-
-        inputType: "password",
-
-        placeholder: "Enter your password",
-
-        buttonName: "Submit",
-
-    }]
+    ];
 
   
 
-    const [index, setIndex]= useState(0);
+    const [index, setIndex] = useState(0);
 
-    const [forms, setForms]= useState(data);
+    const [forms] = useState(data);
 
-    const [formData, setFormData]= useState({
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const [formData, setFormData] = useState({
 
         name: "",
 
@@ -75,51 +41,36 @@ const MultiStepForm = () => {
     });
 
   
-  
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        if(index=== forms.length-1){
+        if (index === forms.length - 1) {
 
             alert("Form submitted successfully!");
 
-            setFormData({
-
-                name: "",
-
-                email: "",
-
-                dob: "",
-
-                password: "",
-
-            })
-
-            setIndex(0); // Reset to the first step after submission
+            setIsSubmitted(true);
 
             return;
 
         }
 
-        setIndex((idx)=> idx + 1);
+        setIndex((idx) => idx + 1);
+
+    };
 
   
 
-    }
+    const handleBack = () => {
 
-  
+        if (index > 0) {
 
-    const handleBack=()=>{
-
-        if(index>0){
-
-            setIndex((idx)=> idx - 1);
+            setIndex((idx) => idx - 1);
 
         }
 
-    }
+    };
 
   
 
@@ -127,69 +78,85 @@ const MultiStepForm = () => {
 
         const { id, value } = e.target;
 
-        console.log(id, value); // This will now print properly!
+        setFormData((prev) => ({
 
-        setFormData((prevData) => ({
-
-            ...prevData,
+            ...prev,
 
             [id]: value,
 
         }));
 
-    }
+    };
+
+  
 
     return (
 
         <div className='form-container'>
 
-                <h2>{forms[index].label}</h2>
+            <h2>{isSubmitted ? "Form Preview" : forms[index].label}</h2>
+
+  
+
+            {!isSubmitted ? (
 
                 <form className='form' onSubmit={handleSubmit}>
 
-                <input
+                    <input
 
-                    id={forms[index].id}
+                        id={forms[index].id}
 
-                    type={forms[index].inputType}
+                        type={forms[index].inputType}
 
-                    placeholder={forms[index].placeholder}
+                        placeholder={forms[index].placeholder}
 
-                    onChange={handleInputChange}
+                        onChange={handleInputChange}
 
-                    value= {formData[forms[index].id]}
+                        value={formData[forms[index].id]}
 
-                    required
+                        required
 
-  
+                    />
 
-                />
+                    <div className="button-group">
 
-                <div className="button-group">
+                        {index > 0 && (
 
-                    {index>0 && <button type='button' className='btn back-btn' onClick={handleBack}>Back</button>}
+                            <button type='button' className='btn back-btn' onClick={handleBack}>
 
-                    <button className='btn'>{forms[index].buttonName}</button>
+                                Back
+
+                            </button>
+
+                        )}
+
+                        <button className='btn'>{forms[index].buttonName}</button>
+
+                    </div>
+
+                </form>
+
+            ) : (
+
+                <div className="form-preview">
+
+                    <p><strong>Name:</strong> {formData.name}</p>
+
+                    <p><strong>Email:</strong> {formData.email}</p>
+
+                    <p><strong>Date of Birth:</strong> {formData.dob}</p>
+
+                    <p><strong>Password:</strong> {formData.password}</p>
 
                 </div>
 
-            </form>
-
-  
-
-            <div className="form-preview">
-
-                <h3>Live Form Preview</h3>
-
-                <pre>{JSON.stringify(formData, null, 2)}</pre>
-
-            </div>
+            )}
 
         </div>
 
-    )
+    );
 
-}
+};
 
   
 
