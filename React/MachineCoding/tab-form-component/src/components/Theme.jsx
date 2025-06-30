@@ -25,8 +25,7 @@ const Theme = ({ data, setData, errors }) => {
           name="theme"
           value="light"
           checked={theme === "light"}
-          onClick={change}
-          readOnly
+          onChange={change}
         />
         Light
       </label>
