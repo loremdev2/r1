@@ -71,15 +71,43 @@ const TabForm = () => {
   return (
     <div>
       <div className="heading-container">
-        {tabs.map((t, i) => (
-          <h4
-            key={i}
-            onClick={() => setActiveTab(i)}
-            className={i === activeTab ? "heading active" : "heading"}
-          >
-            {t.name}
-          </h4>
-        ))}
+// Inside your TabForm component, before the return statement:
+const handleTabClick = (targetTab) => {
+  if (targetTab < activeTab) {
+    // Allow going back without validation
+    setErrors({});
+    setActiveTab(targetTab);
+  } else if (targetTab > activeTab) {
+    // Validate current tab before moving forward
+    const stepErrors = validate(data, activeTab);
+    if (Object.keys(stepErrors).length) {
+      setErrors(stepErrors);
+    } else {
+      setErrors({});
+      setActiveTab(targetTab);
+    }
+  }
+};
+
+// ...later, in your JSX return:
+{tabs.map((t, i) => (
+  <h4
+    key={i}
+    onClick={() => handleTabClick(i)}
+    className={i === activeTab ? "heading active" : "heading"}
+    role="tab"
+    tabIndex={0}
+    aria-selected={i === activeTab}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTabClick(i);
+      }
+    }}
+  >
+    {t.name}
+  </h4>
+))}
       </div>
       <div className="tab-body">
         <ActiveTabComponent
