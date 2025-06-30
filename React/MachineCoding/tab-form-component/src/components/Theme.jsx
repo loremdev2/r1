@@ -1,9 +1,10 @@
 const Theme = ({ data, setData, errors }) => {
   const { theme } = data;
   const change = (e) => {
+    const v = e.target.value;
     setData((p) => ({
       ...p,
-      theme: e.target.value,
+      theme: p.theme === v ? "" : v,
     }));
   };
 
@@ -15,7 +16,8 @@ const Theme = ({ data, setData, errors }) => {
           name="theme"
           value="dark"
           checked={theme === "dark"}
-          onChange={change}
+          onClick={change}
+          readOnly
         />
         Dark
       </label>
@@ -25,7 +27,8 @@ const Theme = ({ data, setData, errors }) => {
           name="theme"
           value="light"
           checked={theme === "light"}
-          onChange={change}
+          onClick={change}
+          readOnly
         />
         Light
       </label>

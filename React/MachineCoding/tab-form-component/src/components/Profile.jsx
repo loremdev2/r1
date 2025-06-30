@@ -40,7 +40,7 @@ const Profile = ({ data, setData, errors }) => {
       <div>
         <label>Email:</label>
         <input
-          type="email"
+          type="text"
           value={email}
           onChange={(e) => handleDataChange(e, "email")}
         />
