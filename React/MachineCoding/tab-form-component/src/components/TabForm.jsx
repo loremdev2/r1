@@ -24,7 +24,14 @@ const TabForm = () => {
     if (tabIndex === 0) {
       // Profile tab
       if (!data.name.trim()) errs.name = "Name is required.";
-      if (!/^[0-9]+$/.test(data.age)) errs.age = "Age must be a number.";
+      const ageNum = parseInt(data.age);
+      if (!data.age.trim()) {
+        errs.age = "Age is required.";
+      } else if (!/^[0-9]+$/.test(data.age)) {
+        errs.age = "Age must be a number.";
+      } else if (ageNum < 1 || ageNum > 120) {
+        errs.age = "Age must be between 1 and 120.";
+      }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
         errs.email = "Email is invalid.";
       if (!data.country) errs.country = "Please select a country.";
