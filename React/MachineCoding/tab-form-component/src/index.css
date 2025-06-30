@@ -29,9 +29,19 @@
   display: flex;
   border: 1px solid white;
   padding: 10px 25px;
-  width: 50%;
-  height: 300px;
-  
+  min-width: 300px;
+  max-width: 600px;
+  width: 100%;
+  min-height: 300px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .tab-body {
+    padding: 10px 15px;
+    min-width: auto;
+  }
 }
 
 .profile-elements{
