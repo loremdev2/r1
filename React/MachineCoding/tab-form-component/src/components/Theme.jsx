@@ -1,10 +1,9 @@
 const Theme = ({ data, setData, errors }) => {
   const { theme } = data;
   const change = (e) => {
-    const v = e.target.value;
     setData((p) => ({
       ...p,
-      theme: p.theme === v ? "" : v,
+      theme: e.target.value,
     }));
   };
 
