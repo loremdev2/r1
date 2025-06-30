@@ -1,0 +1,57 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.heading-container{
+  display: flex;
+}
+
+.heading{
+  padding: 5px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.tab-body{
+  display: flex;
+  border: 1px solid white;
+  padding: 10px 25px;
+  width: 50%;
+  height: 300px;
+  
+}
+
+.profile-elements{
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-elements{
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container{
+  display: flex;
+  gap: 10px;
+  margin: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
