@@ -32,8 +32,11 @@ const TabForm = () => {
       } else if (ageNum < 1 || ageNum > 120) {
         errs.age = "Age must be between 1 and 120.";
       }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-        errs.email = "Email is invalid.";
+      if (!data.email.trim()) {
+        errs.email = "Email is required.";
+      } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email.trim())) {
+        errs.email = "Please enter a valid email address.";
+      }
       if (!data.country) errs.country = "Please select a country.";
       if (data.interests.length === 0)
         errs.interests = "Select at least one interest.";
