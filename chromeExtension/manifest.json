@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Backup & Sync",
+  "version": "1.1",
+  "description": "View, backup, export and import your Chrome bookmarks",
+  "permissions": [
+    "bookmarks",
+    "storage",
+    "alarms",
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Bookmarks",
+    "default_popup": "popup.html"
+  }
+}

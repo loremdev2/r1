@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Bookmarks</title>
+  <style>
+    body { margin: 0; padding: 8px; width: 320px; font-family: sans-serif; }
+    ul { list-style: none; padding-left: 16px; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    #controls { margin-top: 12px; }
+    button { margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <h3>My Bookmarks</h3>
+  <div id="bookmark-container">Loading…</div>
+
+  <div id="controls">
+    <button id="export-btn">Export JSON</button>
+    <input type="file" id="import-file" accept=".json" style="display:none"/>
+    <button id="import-btn">Import JSON</button>
+    <div id="status" style="margin-top:8px;color:green"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
